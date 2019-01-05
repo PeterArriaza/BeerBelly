@@ -66,8 +66,10 @@ function positionMap(address, resultsMap, locations) {
 
 // display makers on google map
 function displayMarkers(map, markerPoints) {
+    // google maps geocoder api can only handle 10 calls in quick succession
     let size = 10;
     var points = [];
+    // breakup api results object into arrays with length 10
     for (let i = 0; i < markerPoints.length; i += size) {
         points.push(markerPoints.slice(i, i + size));
     }
