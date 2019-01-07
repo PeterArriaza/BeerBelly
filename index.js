@@ -89,8 +89,9 @@ function displayMarkers(map, markerPoints) {
                     map: map,
                     position: results[0].geometry.location
                 });
-                // remove beer graphic and display search results
+                // remove beer graphic 
                 $('#results').empty();
+
 
                 // add button to results div to load next 10
             } else {
