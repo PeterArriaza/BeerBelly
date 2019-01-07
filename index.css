@@ -1,29 +1,43 @@
 * {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-body, html {
-	height: 100%;
-	margin: 0;
-	padding: 0;
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-section {
-	height: 80%;
-	padding: 5px;
+#mapDisplay {
+    height: 80%;
+    padding: 5px;
 }
 
 #search {
-	height: 20%;
-	display: block;
-	font-family: Arial;
-	text-align: center;
-	padding-bottom: 20px;
+    height: 20%;
+    display: block;
+    font-family: Arial;
+    text-align: center;
+    padding-bottom: 20px;
 }
 
 #map {
-	height: 100%;
-	display: block;
-
+    height: 100%;
+    display: block;
+    width: 75%;
 }
 
+#results {
+    width: 25%;
+    height: 100%;
+    float: left;
+/*    border: 1px solid green;*/
+}
+
+#beerMug {
+    max-height: 100%;
+    max-width: 100%;
+/*    border: 1px solid black;*/
+    vertical-align: middle;
+}

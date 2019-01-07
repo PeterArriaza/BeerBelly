@@ -89,8 +89,10 @@ function displayMarkers(map, markerPoints) {
                     map: map,
                     position: results[0].geometry.location
                 });
-                //                numPoints--;
-                //                console.log(numPoints);
+                // remove beer graphic and display search results
+                $('#results').empty();
+
+                // add button to results div to load next 10
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
                 console.log('error');
