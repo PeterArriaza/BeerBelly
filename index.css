@@ -32,12 +32,17 @@ html {
     width: 25%;
     height: 100%;
     float: left;
-/*    border: 1px solid green;*/
+    overflow: auto;
+    /*    border: 1px solid green;*/
 }
 
 #beerMug {
     max-height: 100%;
     max-width: 100%;
-/*    border: 1px solid black;*/
+    /*    border: 1px solid black;*/
     vertical-align: middle;
+}
+
+.searchResult {
+    display: block;
 }

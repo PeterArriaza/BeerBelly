@@ -76,6 +76,8 @@ function displayMarkers(map, markerPoints) {
     console.log(points);
     var geocoder = new google.maps.Geocoder();
     let i = 0;
+    // remove beer graphic 
+    $('#results').empty();
     for (let j = 0; j < 10; j++) {
         //            console.log(markerPoints[i].street + ', ' + markerPoints[i].city + ', ' + markerPoints[i].state +
         //                ', ' + markerPoints[i].zip);
@@ -89,10 +91,13 @@ function displayMarkers(map, markerPoints) {
                     map: map,
                     position: results[0].geometry.location
                 });
-                // remove beer graphic 
-                $('#results').empty();
 
-
+                // show search results
+                $('#results').append(`<div class="searchResult">
+<p>Name: ${points[i][j].name}<p>
+<p>Location: ${points[i][j].street + ', ' + points[i][j].city + ', ' + points[i][j].state +
+                ', ' + points[i][j].zip}</p>
+</div>`)
                 // add button to results div to load next 10
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
@@ -101,6 +106,7 @@ function displayMarkers(map, markerPoints) {
 
         });
     }
+    $('#results').html(`<div class="nextButton"></div>`);
 }
 
 
