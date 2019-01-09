@@ -57,27 +57,35 @@ function positionMap(address, resultsMap, locations) {
     }, function (results, status) {
         if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
-            displayMarkers(resultsMap, locations);
+            sliceLocations(resultsMap, locations);
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }
     });
 }
 
-// display makers on google map
-function displayMarkers(map, markerPoints) {
+// split locations into arrays that do not cause query limit error in google geocoder
+function sliceLocations(map, locations) {
     // google maps geocoder api can only handle 10 calls in quick succession
     let size = 10;
     var points = [];
     // breakup api results object into arrays with length 10
-    for (let i = 0; i < markerPoints.length; i += size) {
-        points.push(markerPoints.slice(i, i + size));
+    for (let i = 0; i < locations.length; i += size) {
+        points.push(locations.slice(i, i + size));
     }
     console.log(points);
-    var geocoder = new google.maps.Geocoder();
-    let i = 0;
+    //    displayMarkers(map, points);
     // remove beer graphic 
     $('#results').empty();
+    $('#buttonDisplay').append(`<button id="nextButton" class="hidden">Load Next 10 Results</button>`);
+    displayMarkers(map, points);
+}
+
+// display makers on google map
+function displayMarkers(map, points) {
+    var geocoder = new google.maps.Geocoder();
+    let i = 0;
+
     for (let j = 0; j < 10; j++) {
         //            console.log(markerPoints[i].street + ', ' + markerPoints[i].city + ', ' + markerPoints[i].state +
         //                ', ' + markerPoints[i].zip);
@@ -106,7 +114,7 @@ function displayMarkers(map, markerPoints) {
 
         });
     }
-    $('#results').html(`<div class="nextButton"></div>`);
+    $('#nextButton').removeClass('hidden');
 }
 
 
