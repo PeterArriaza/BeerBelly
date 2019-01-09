@@ -102,11 +102,9 @@ function displayMarkers(map, points) {
 
                 // show search results
                 $('#results').append(`<div class="searchResult">
-<p>Name: ${points[i][j].name}<p>
-<p>Location: ${points[i][j].street + ', ' + points[i][j].city + ', ' + points[i][j].state +
+<p class="locationName">${points[i][j].name}</p><p>Address: ${points[i][j].street + ', ' + points[i][j].city + ', ' + points[i][j].state +
                 ', ' + points[i][j].zip}</p>
 </div>`)
-                // add button to results div to load next 10
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
                 console.log('error');
