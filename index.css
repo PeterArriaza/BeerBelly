@@ -129,3 +129,13 @@ h1 {
 .locationName {
     font-weight: bold;
 }
+
+#newSearch {
+    margin-top: 20px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+    font-size: 1.5em;
+}
