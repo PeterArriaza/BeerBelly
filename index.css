@@ -14,7 +14,7 @@ h1 {
 }
 
 #mapDisplay {
-    height: 80%;
+    height: 70%;
     padding: 5px;
 }
 
@@ -24,6 +24,37 @@ h1 {
     font-family: Arial;
     text-align: center;
     padding-bottom: 20px;
+}
+
+#footer {
+    height: 10%;
+    background-color: #15781B;
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+    position: relative;
+    padding: 5px;
+}
+
+#footer p {
+    position: relative;
+    left: 0;
+    display: inline-block;
+    /*    vertical-align: middle;
+    */
+    color: white;
+    font-family: 'PT Sans', sans-serif;
+}
+
+#footerLinks {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 22%;
+}
+
+#github {
+    padding-right: 5px;
 }
 
 #map {
@@ -39,6 +70,7 @@ h1 {
 }
 
 #beerMug {
+    display: inline-block;
     max-height: 100%;
     max-width: 100%;
     vertical-align: middle;
