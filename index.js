@@ -123,17 +123,24 @@ function displayMarkers(map, points, index) {
                 ', ' + points[j].zip
         }, function (results, status) {
             if (status === 'OK') {
-                //                console.log(points[j].name);                
+                //                console.log(points[j].name);   
+                var contentString = `<div class='content'>
+<h1>${points[j].name}</h1></div>`;
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
                 var marker = new google.maps.Marker({
                     map: map,
                     position: results[0].geometry.location
                 });
-
+                marker.addListener('click', function () {
+                    infowindow.open(map, marker)
+                });
                 // show search results
                 $('#results').append(`<div class = "searchResult"><p class = "locationName">${points[j].name}</p>
 <p>${points[j].street + ', ' + points[j].city + ', ' + points[j].state +
             ', ' + points[j].zip}</p> 
-</div>`)
+</div>`);
             } else {
                 //                alert('Geocode was not successful for the following reason: ' + status);
                 console.log('error');
