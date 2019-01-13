@@ -17,8 +17,8 @@
             <h1>Search for Places to Buy Beer</h1>
             <form action="#" id="city-state" class="city-state-query">
                 <label for="query">
-                    <input type="text" class="query city" name="city" placeholder="City">
-                    <select class="state">
+                    <input type="text" class="query city" name="city" placeholder="City" required oninvalid="this.setCustomValidity('City is required.')" oninput="this.setCustomValidity('')">
+                    <select class="state" required oninvalid="this.setCustomValidity('State is required.')" oninput="this.setCustomValidity('')">
                         <option value="" disabled selected>State</option>
                         <option value="AL">AL</option>
                         <option value="AK">AK</option>
