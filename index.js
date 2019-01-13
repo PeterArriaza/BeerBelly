@@ -139,6 +139,10 @@ function displayMarkers(map, points, index) {
                 marker.addListener('click', function () {
                     infowindow.open(map, marker)
                 });
+                map.addListener("click", function (event) {
+                    infowindow.close();
+                });
+
                 // show search results
                 $('#results').append(`<div class = "searchResult"><p class = "locationName">${points[j].name}</p>
 <p>${points[j].street + ', ' + points[j].city + ', ' + points[j].state +
@@ -151,6 +155,7 @@ function displayMarkers(map, points, index) {
 
         });
     }
+
     // show button 5 seconds after results display to search for the next 10 locations
     setTimeout(function () {
         $('#buttonDisplay').removeClass('hidden');
