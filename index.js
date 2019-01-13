@@ -40,7 +40,7 @@ function getBeerData(city, state, index = 0) {
 // function is called in the callback from the api script src in index.html
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 13,
+        zoom: 11,
         center: {
             lat: 39.9526,
             lng: -75.1652
@@ -60,7 +60,7 @@ function positionMap(address, resultsMap, locations, index) {
             resultsMap.setCenter(results[0].geometry.location);
             sliceLocations(resultsMap, locations, index);
         } else {
-            alert('Geocode was not successful for the following reason: ' + status);
+            console.log('Geocode was not successful for the following reason: ' + status);
         }
     });
 }
@@ -70,23 +70,33 @@ function sliceLocations(map, locations, index) {
     // google maps geocoder api can only handle 10 calls in quick succession
     let size = 10;
     var points = [];
+    console.log(points);
+    console.log(index, size, (parseInt(index) + parseInt(size)));
+    let j = 0;
+
     // breakup api results object into arrays with length 10
-    for (let i = index; i < locations.length; i += size) {
-        points.push(locations.slice(i, i + size));
+    for (let i = parseInt(index); i < (parseInt(index) + parseInt(size)); i++) {
+        console.log(i);
+        //        points.push(locations[i]);
+        points[j] = locations[i];
+        j++
     }
     console.log(points);
     //    displayMarkers(map, points);
     // remove beer graphic 
     $('#results').empty();
-    console.log(points[0][0].city);
+    console.log(points[0].city);
     // create values that can be passed to subsequent functions 
+    $('#buttonDisplay').empty();
     $('#buttonDisplay').append(`
-<form>
-<input id="index" type="hidden" value="${(index+10)}"/>
-<input id="city" type="hidden" value="${points[0][0].city}"/>
-<input id="state" type="hidden" value="${points[0][0].state}"/>
-<button id="nextButton" class="button hidden">Load Next 10 Results</button>
+<form id="valueForm">
+<input id="index" type="hidden" value="${(parseInt(index)+10)}"/>
+<input id="city" type="hidden" value="${points[0].city}"/>
+<input id="state" type="hidden" value="${points[0].state}"/>
+<button id="nextButton" class="button">Load Next 10 Results</button>
 </form>`);
+    $('#buttonDisplay').addClass('hidden');
+
     displayMarkers(map, points, index);
 }
 
@@ -104,26 +114,25 @@ $(document).on('click', '#nextButton', function (event) {
 // display makers on google map
 function displayMarkers(map, points, index) {
     var geocoder = new google.maps.Geocoder();
-    let i = 0;
 
     for (let j = 0; j < 10; j++) {
-        console.log(points[i][j].street + ', ' + points[i][j].city + ', ' + points[i][j].state +
-            ', ' + points[i][j].zip);
+        //        console.log(points[j].street + ', ' + points[j].city + ', ' + points[j].state +
+        //            ', ' + points[j].zip);
         geocoder.geocode({
-            'address': points[i][j].street + ', ' + points[i][j].city + ', ' + points[i][j].state +
-                ', ' + points[i][j].zip
+            'address': points[j].street + ', ' + points[j].city + ', ' + points[j].state +
+                ', ' + points[j].zip
         }, function (results, status) {
             if (status === 'OK') {
-                console.log(points[i][j].name);
+                //                console.log(points[j].name);                
                 var marker = new google.maps.Marker({
                     map: map,
                     position: results[0].geometry.location
                 });
 
                 // show search results
-                $('#results').append(`<div class = "searchResult"><p class = "locationName">${points[i][j].name}</p>
-<p>${points[i][j].street + ', ' + points[i][j].city + ', ' + points[i][j].state +
-            ', ' + points[i][j].zip}</p> 
+                $('#results').append(`<div class = "searchResult"><p class = "locationName">${points[j].name}</p>
+<p>${points[j].street + ', ' + points[j].city + ', ' + points[j].state +
+            ', ' + points[j].zip}</p> 
 </div>`)
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
@@ -133,14 +142,18 @@ function displayMarkers(map, points, index) {
         });
     }
     // show button after results display to search for the next 10 locations
-    $('#nextButton').removeClass('hidden');
+    setTimeout(function () {
+        $('#buttonDisplay').removeClass('hidden');
+    }, 3000);
     $('#search').html(`<button id='newSearch' class='button'>Start New Search</button>`);
 }
 
 // load next 10 search results on click 
 $(document).on('click', '#newSearch', function () {
-    initMap();
-    resetForm();
+    //    initMap();
+    //    resetForm();
+    location.reload();
+
 });
 
 function resetForm() {
@@ -208,6 +221,7 @@ function resetForm() {
                     <button type="submit">Search</button>
                 </label>
             </form>`);
+    watchSubmit();
 }
 
 $(watchSubmit);
