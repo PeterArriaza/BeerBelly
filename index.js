@@ -125,7 +125,10 @@ function displayMarkers(map, points, index) {
             if (status === 'OK') {
                 //                console.log(points[j].name);   
                 var contentString = `<div class='content'>
-<h1>${points[j].name}</h1></div>`;
+<h1>${points[j].name}</h1>
+<h2>${points[j].street + ', ' + points[j].city + ', ' + points[j].state +
+            ', ' + points[j].zip}</h2>
+</div>`;
                 var infowindow = new google.maps.InfoWindow({
                     content: contentString
                 });
