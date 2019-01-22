@@ -9,51 +9,27 @@ html {
     padding: 0;
 }
 
-main {
-    width: 100%;
-}
-
-#logo {
-    width: 25%;
-    height: auto;
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-}
-
-#logoimg {
-    display: inline-block;
-    height: auto;
-    width: auto;
-    max-height: 150px;
-    max-width: 150px;
-}
-
 #searchHeader {
     font-family: 'Carter One', cursive;
 }
 
 #mapDisplay {
-    height: 65%;
+    height: 70%;
     padding: 5px;
 }
 
 #search {
-    width: 75%;
     height: 20%;
-    display: inline-block;
+    display: block;
     font-family: Arial;
     text-align: center;
     padding-bottom: 20px;
-    float: right;
-    padding-left: 10px;
-    padding-right: 10px;
 }
 
 #footer {
     height: 10%;
     background-color: #15781B;
-    display: block;
+    display: inline-block;
     width: 100%;
     vertical-align: middle;
     position: relative;
@@ -66,6 +42,8 @@ main {
     position: relative;
     left: 0;
     display: inline-block;
+    /*    vertical-align: middle;
+    */
     color: white;
     font-family: 'PT Sans', sans-serif;
 }
@@ -88,8 +66,6 @@ main {
 }
 
 #sideBar {
-    padding-right: 10px;
-    padding-left: 5px;
     width: 25%;
     height: 100%;
     float: left;
@@ -103,6 +79,11 @@ main {
 }
 
 .hidden {
+    /*
+    background: transparent;
+    border: none !important;
+    font-size: 0;
+*/
     display: none;
 }
 
@@ -134,10 +115,10 @@ main {
 }
 
 #results {
-    overflow: auto;
     position: relative;
     width: 100%;
     height: 90%;
+    overflow: auto;
     font-family: 'PT Sans', sans-serif;
 }
 
@@ -171,18 +152,4 @@ main {
 
 .button:hover {
     cursor: pointer;
-}
-
-@media only screen and (max-width: 620px) {
-
-    #logo {
-        width: 100%;
-        display: block;
-    }
-
-    #search {
-        width: 100%;
-        display: block;
-    }
-
 }
