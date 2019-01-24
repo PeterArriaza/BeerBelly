@@ -4,7 +4,8 @@ A tasty little app to find local breweries, stores, bars, and other locations th
 
 To start, enter a city followed by a state within the United States.  Both fields are required.  Display results in your search city by clicking "Search".
 
-SCREENSHOT - LANDING PAGE
+![alt text](https://github.com/PeterArriaza/BeerBelly/master/img/landingpage.png "Logo Title Text 1")
+
 
 Results will be displayed 10 at a time.  Click a pin on the map to find out more about that location.  "Load Next 10 Results" will show more pins.  Clicking "Start New Search" will remove the placed pins and refresh the page.
 
