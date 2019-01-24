@@ -16,7 +16,7 @@ function watchSubmit() {
 
 // make api call with user's values
 function getBeerData(city, state, index = 0) {
-    var api_url = "http://beermapping.com/webservice/loccity/b79009d86aaf5ff13096058e40ac0780/" + city + "," + state + "&s=json";
+    var api_url = "https://beermapping.com/webservice/loccity/b79009d86aaf5ff13096058e40ac0780/" + city + "," + state + "&s=json";
     var settings = {
         url: api_url,
         method: 'GET',
