@@ -22,13 +22,13 @@ function getBeerData(city, state, index = 0) {
         method: 'GET',
     };
     $.ajax(settings)
-        /* if the call is successful (status 200 OK) show results */
+        // if the call is successful (status 200 OK) show results 
         .done(function (result) {
-            /* if the results are meeningful, we can just console.log them */
+            // if the results are meeningful, we can just console.log them 
             var mapCenter = city + ',' + state;
             positionMap(mapCenter, map, result, index);
         })
-        /* if the call is NOT successful show errors */
+        // if the call is NOT successful show errors 
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
             console.log(error);
@@ -81,11 +81,10 @@ function sliceLocations(map, locations, index) {
         points[j] = locations[i];
         j++
     }
-    console.log(points);
-    //    displayMarkers(map, points);
+
     // remove beer graphic 
     $('#results').empty();
-    console.log(points[0].city);
+
     // create values that can be passed to subsequent functions 
     $('#buttonDisplay').empty();
     $('#buttonDisplay').append(`
@@ -115,15 +114,15 @@ $(document).on('click', '#nextButton', function (event) {
 function displayMarkers(map, points, index) {
     var geocoder = new google.maps.Geocoder();
 
+    // iterate through locations and get coordinates for each index of array
     for (let j = 0; j < 10; j++) {
-        //        console.log(points[j].street + ', ' + points[j].city + ', ' + points[j].state +
-        //            ', ' + points[j].zip);
         geocoder.geocode({
             'address': points[j].street + ', ' + points[j].city + ', ' + points[j].state +
                 ', ' + points[j].zip
         }, function (results, status) {
+
             if (status === 'OK') {
-                //                console.log(points[j].name);   
+                // create information shown when user clicks on marker
                 var contentString = `<div class='content'>
 <h1>${points[j].name}</h1>
 <h2>${points[j].street + ', ' + points[j].city + ', ' + points[j].state +
@@ -132,10 +131,14 @@ function displayMarkers(map, points, index) {
                 var infowindow = new google.maps.InfoWindow({
                     content: contentString
                 });
+
+                // place marker at location
                 var marker = new google.maps.Marker({
                     map: map,
                     position: results[0].geometry.location
                 });
+
+                // handle clicks on marker
                 marker.addListener('click', function () {
                     infowindow.open(map, marker)
                 });
@@ -149,7 +152,6 @@ function displayMarkers(map, points, index) {
             ', ' + points[j].zip}</p> 
 </div>`);
             } else {
-                //                alert('Geocode was not successful for the following reason: ' + status);
                 console.log('error');
             }
 
