@@ -51,18 +51,25 @@ function initMap() {
 
 // center map on search city, state
 function positionMap(address, resultsMap, locations, index) {
-    var geocoder = new google.maps.Geocoder();
-    console.log(locations);
-    geocoder.geocode({
-        'address': address
-    }, function (results, status) {
-        if (status === 'OK') {
-            resultsMap.setCenter(results[0].geometry.location);
-            sliceLocations(resultsMap, locations, index);
-        } else {
-            console.log('Geocode was not successful for the following reason: ' + status);
-        }
-    });
+    console.log(resultsMap);
+    // test if resultsMap is valid  
+    if (resultsMap.length === 0) {
+        var geocoder = new google.maps.Geocoder();
+        console.log(locations);
+        geocoder.geocode({
+            'address': address
+        }, function (results, status) {
+            if (status === 'OK') {
+                resultsMap.setCenter(results[0].geometry.location);
+                sliceLocations(resultsMap, locations, index);
+            } else {
+                console.log('Geocode was not successful for the following reason: ' + status);
+            }
+
+        });
+    } else {
+        alert('Geolocation unsuccessful');
+    }
 }
 
 // split locations into arrays that do not cause query limit error in google geocoder
