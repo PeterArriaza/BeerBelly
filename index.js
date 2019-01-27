@@ -53,7 +53,7 @@ function initMap() {
 function positionMap(address, resultsMap, locations, index) {
     console.log(resultsMap);
     // test if resultsMap is valid  
-    if (resultsMap.length === 0) {
+    if (resultsMap.length !== 0) {
         var geocoder = new google.maps.Geocoder();
         console.log(locations);
         geocoder.geocode({
@@ -123,46 +123,56 @@ function displayMarkers(map, points, index) {
 
     // iterate through locations and get coordinates for each index of array
     for (let j = 0; j < 10; j++) {
-        geocoder.geocode({
-            'address': points[j].street + ', ' + points[j].city + ', ' + points[j].state +
-                ', ' + points[j].zip
-        }, function (results, status) {
+        console.log(points[j]);
+        if (points[j] !== undefined) {
+            if (points[j].id !== null) {
+                geocoder.geocode({
+                    'address': points[j].street + ', ' + points[j].city + ', ' + points[j].state +
+                        ', ' + points[j].zip
+                }, function (results, status) {
 
-            if (status === 'OK') {
-                // create information shown when user clicks on marker
-                var contentString = `<div class='content'>
+                    if (status === 'OK') {
+                        // create information shown when user clicks on marker
+                        var contentString = `<div class='content'>
 <h1>${points[j].name}</h1>
 <h2>${points[j].street + ', ' + points[j].city + ', ' + points[j].state +
             ', ' + points[j].zip}</h2>
 </div>`;
-                var infowindow = new google.maps.InfoWindow({
-                    content: contentString
-                });
+                        var infowindow = new google.maps.InfoWindow({
+                            content: contentString
+                        });
 
-                // place marker at location
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: results[0].geometry.location
-                });
+                        // place marker at location
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location
+                        });
 
-                // handle clicks on marker
-                marker.addListener('click', function () {
-                    infowindow.open(map, marker)
-                });
-                map.addListener("click", function (event) {
-                    infowindow.close();
-                });
+                        // handle clicks on marker
+                        marker.addListener('click', function () {
+                            infowindow.open(map, marker)
+                        });
+                        map.addListener("click", function (event) {
+                            infowindow.close();
+                        });
 
-                // show search results
-                $('#results').append(`<div class = "searchResult"><p class = "locationName">${points[j].name}</p>
+                        // show search results
+                        $('#results').append(`<div class = "searchResult"><p class = "locationName">${points[j].name}</p>
 <p>${points[j].street + ', ' + points[j].city + ', ' + points[j].state +
             ', ' + points[j].zip}</p> 
 </div>`);
-            } else {
-                console.log('error');
-            }
+                    } else {
+                        console.log('error');
+                    }
 
-        });
+                });
+            } else {
+                $('#results').append(`<div class = "searchResult"><p class = "locationName">invalid address</p></div>`);
+
+            }
+        } else {
+            $('#results').append(`<div class = "searchResult"><p class = "locationName">invalid address</p></div>`);
+        }
     }
 
     // show button 5 seconds after results display to search for the next 10 locations
