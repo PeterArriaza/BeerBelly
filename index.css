@@ -31,20 +31,9 @@ main {
 #logoimg {
     display: block;
     width: 100%;
-    max-width: 175px;
+    max-width: 125px;
     margin-left: auto;
     margin-right: auto;
-}
-
-#searchHeader {
-    font-family: 'Carter One', cursive;
-}
-
-#mapDisplay {
-    display: block;
-    width: 100%;
-    height: 70%;
-    padding: 5px;
 }
 
 #search {
@@ -58,38 +47,25 @@ main {
     padding-right: 10px;
 }
 
-footer {
-    background-color: #15781B;
+#searchHeader {
+    font-family: 'Carter One', cursive;
+}
+
+#newSearch {
+    margin-top: 20px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+    font-size: 1.5em;
+}
+
+#mapDisplay {
     display: block;
     width: 100%;
-    vertical-align: middle;
+    height: 70%;
     padding: 5px;
-    margin-top: 20px;
-}
-
-footer p {
-    position: relative;
-    left: 0;
-    display: inline-block;
-    color: white;
-    font-family: 'PT Sans', sans-serif;
-}
-
-#footerLinks {
-    display: inline-block;
-    position: absolute;
-    right: 0;
-    top: 22%;
-}
-
-#github {
-    padding-right: 5px;
-}
-
-#map {
-    display: inline-block;
-    height: 400px;
-    width: 74%;
 }
 
 #sideBar {
@@ -97,7 +73,8 @@ footer p {
     padding-right: 10px;
     padding-left: 5px;
     width: 25%;
-    height: 100%;
+    height: 400px;
+    overflow-y: auto;
 }
 
 #beerMug {
@@ -125,20 +102,20 @@ footer p {
 }
 
 #nextButton {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: inline-block;
+    display: block;
     border: none;
     background-color: #4CAF50;
     color: white;
     text-align: center;
     width: 100%;
-    height: 100%;
     font-family: 'PT Sans', sans-serif;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 #results {
+    display: block;
     width: 100%;
     font-family: 'PT Sans', sans-serif;
 }
@@ -161,18 +138,33 @@ footer p {
     font-weight: bold;
 }
 
-#newSearch {
-    margin-top: 20px;
-    border: none;
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
-    font-family: 'Carter One', cursive;
-    font-size: 1.5em;
+#map {
+    display: inline-block;
+    height: 400px;
+    width: 74%;
 }
 
 .button:hover {
     cursor: pointer;
+}
+
+footer {
+    background-color: #15781B;
+    display: block;
+    width: 100%;
+    vertical-align: middle;
+    padding: 5px;
+    margin-top: 20px;
+    position: absolute;
+    bottom: 0;
+}
+
+footer p {
+    position: relative;
+    left: 0;
+    display: inline-block;
+    color: white;
+    font-family: 'PT Sans', sans-serif;
 }
 
 @media only screen and (max-width: 620px) {
@@ -191,11 +183,14 @@ footer p {
         display: block;
         width: 100%;
         height: auto;
-        max-height: 300px;
     }
 
     #map {
         display: block;
         width: 100%;
+    }
+
+    footer {
+        display: none;
     }
 }
