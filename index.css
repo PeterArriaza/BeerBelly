@@ -1,16 +1,18 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body,
 html {
     height: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 main {
+    display: inline-block;
     width: 100%;
+    height: 15%;
 }
 
 #logo {
@@ -23,10 +25,7 @@ main {
 
 #logoimg {
     display: inline-block;
-    height: auto;
-    width: auto;
-    max-height: 150px;
-    max-width: 150px;
+    max-height: 100%;
 }
 
 #searchHeader {
@@ -34,18 +33,19 @@ main {
 }
 
 #mapDisplay {
-    height: 65%;
+    display: block;
+    width: 100%;
+    height: 70%;
     padding: 5px;
 }
 
 #search {
-    width: 75%;
-    height: 20%;
+    width: 74%;
+    height: auto;
     display: inline-block;
     font-family: Arial;
     text-align: center;
     padding-bottom: 20px;
-    float: right;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -82,17 +82,17 @@ main {
 }
 
 #map {
+    display: inline-block;
     height: 100%;
-    display: block;
-    width: 75%;
+    width: 74%;
 }
 
 #sideBar {
+    display: inline-block;
     padding-right: 10px;
     padding-left: 5px;
     width: 25%;
     height: 100%;
-    float: left;
 }
 
 #beerMug {
